@@ -9,6 +9,9 @@ import javax.ws.rs.core.MediaType;
 
 import com.divcal.api.DividendApi;
 import com.divcal.model.BatchDividendResponse;
+import com.divcal.model.DividendResponse;
+
+import java.util.List;
 
 @Path("dividends")
 @Produces(MediaType.APPLICATION_JSON)
@@ -26,7 +29,19 @@ public class DividendResource {
 
     @GET
     @Path("getByDate")
-    public BatchDividendResponse makePrediction(@QueryParam("date") String date) {
+    public BatchDividendResponse getDate(@QueryParam("date") String date) {
         return dividendApi.getDividends(date);
+    }
+
+    @GET
+    @Path("getByTickers")
+    public BatchDividendResponse getTickers(@QueryParam("tickers") List<String> tickers) {
+        return dividendApi.getDividends(tickers);
+    }
+
+    @GET
+    @Path("getByTicker")
+    public DividendResponse getTicker(@QueryParam("ticker") String ticker) {
+        return dividendApi.getDividend(ticker);
     }
 }

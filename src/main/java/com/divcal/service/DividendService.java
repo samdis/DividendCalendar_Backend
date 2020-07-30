@@ -1,8 +1,6 @@
 package com.divcal.service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -27,11 +25,29 @@ public class DividendService implements DividendApi {
     }
 
     @Override public DividendResponse getDividend(String ticker) {
-        return null;
+        DividendResponse dividendResponse = new DividendResponse();
+        dividendResponse.setTicker(ticker);
+        List<Date> dateList = new ArrayList<Date>();
+        for(Object result : collection.find(eq("symbol", ticker))) {
+            Document docResult = (Document) result;
+
+            dateList.add(DividendUtil.stringToDate(docResult.getString(("exdate"))));
+        }
+        dividendResponse.setDates(dateList);
+        return dividendResponse;
     }
 
     @Override public BatchDividendResponse getDividends(List<String> tickers) {
-        return null;
+        BatchDividendResponse batchDividendResponse = new BatchDividendResponse();
+        List<DividendResponse> dividends = new ArrayList<>();
+        batchDividendResponse.setDividends(dividends);
+        ListIterator<String> tickersIterator = tickers.listIterator();
+
+        while (tickersIterator.hasNext()) {
+            dividends.add(getDividend(tickersIterator.next()));
+        }
+
+        return batchDividendResponse;
     }
 
     @Override public BatchDividendResponse getDividends(String date) {
