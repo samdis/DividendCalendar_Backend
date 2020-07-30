@@ -11,3 +11,8 @@ Health Check
 ---
 
 To see your applications health enter url `http://localhost:8081/healthcheck`
+
+Notes
+---
+Try this out when running:
+http://localhost:8080/dividends/getByDate?date=08/10/2020
