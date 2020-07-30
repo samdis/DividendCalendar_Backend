@@ -1,2 +1,0 @@
-Notes for Joseph -
-mvn -U clean install -s ~/dev/goodsettings/settings.xml

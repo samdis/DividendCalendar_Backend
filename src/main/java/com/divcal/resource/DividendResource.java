@@ -1,9 +1,6 @@
 package com.divcal.resource;
 
-import java.util.Date;
-
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -11,12 +8,15 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import com.divcal.api.DividendApi;
-import com.divcal.model.DividendResponse;
+import com.divcal.model.BatchDividendResponse;
 
-@Consumes(MediaType.APPLICATION_JSON)
+@Path("dividends")
 @Produces(MediaType.APPLICATION_JSON)
 public class DividendResource {
 
+    // We are given the interface DividendApi instead of constructing the concrete implementation DividendService
+    // This is called inversion of control. This object is supplied through dependency injection
+    // https://dzone.com/articles/ioc-vs-di
     private DividendApi dividendApi;
 
     @Inject
@@ -25,8 +25,8 @@ public class DividendResource {
     }
 
     @GET
-    @Path("getDividendByDate")
-    public DividendResponse makePrediction(@QueryParam("date") Date date) {
-        return dividendApi.getDividend(date);
+    @Path("getByDate")
+    public BatchDividendResponse makePrediction(@QueryParam("date") String date) {
+        return dividendApi.getDividends(date);
     }
 }

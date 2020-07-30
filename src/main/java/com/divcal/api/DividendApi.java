@@ -1,6 +1,5 @@
 package com.divcal.api;
 
-import java.util.Date;
 import java.util.List;
 
 import com.divcal.model.BatchDividendResponse;
@@ -12,6 +11,6 @@ public interface DividendApi {
 
     BatchDividendResponse getDividends(List<String> tickers);
 
-    DividendResponse getDividend(Date date);
+    BatchDividendResponse getDividends(String date);
 
 }

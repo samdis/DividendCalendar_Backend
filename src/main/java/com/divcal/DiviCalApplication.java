@@ -1,12 +1,12 @@
 package com.divcal;
 
-import org.bson.Document;
+import java.text.SimpleDateFormat;
 
-import com.mongodb.MongoClient;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import com.divcal.hk2.DiviCalBinder;
+import com.divcal.resource.DividendResource;
 
 import io.dropwizard.Application;
+import io.dropwizard.jersey.setup.JerseyEnvironment;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
@@ -29,10 +29,17 @@ public class DiviCalApplication extends Application<DiviCalConfiguration> {
     @Override
     public void run(final DiviCalConfiguration configuration,
         final Environment environment) {
-        System.out.println("i suck");
-        MongoClient mongoClient = new MongoClient();
-        MongoDatabase development = mongoClient.getDatabase("development");
-        MongoCollection<Document> collection = development.getCollection("finance");
+
+        environment.getObjectMapper().setDateFormat(new SimpleDateFormat("MM/dd/yyyy"));
+
+        // Configure HTTP filters and mappers
+        JerseyEnvironment jersey = environment.jersey();
+
+        jersey.register(new DiviCalBinder());
+
+        // Expose the HTTP endpoint
+        jersey.register(DividendResource.class);
+
     }
 
 }
