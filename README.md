@@ -16,3 +16,6 @@ Notes
 ---
 Try this out when running:
 http://localhost:8080/dividends/getByDate?date=08/10/2020
+
+Sample google calendar API code in here - this should actually be done at the front-end layer:
+https://github.com/Kubessandra/react-google-calendar-api#readme
