@@ -17,7 +17,6 @@ public class DiviCalBinder extends AbstractBinder {
     }
 
     @Override protected void configure() {
-        System.out.println("i suck");
         MongoClient mongoClient = new MongoClient();
         MongoDatabase development = mongoClient.getDatabase("development");
         MongoCollection<Document> collection = development.getCollection("finance");
