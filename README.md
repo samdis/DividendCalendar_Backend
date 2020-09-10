@@ -1,5 +1,5 @@
 # DiviCal
-
+https://travis-ci.org/samdis/DividenCalendar_Backend.svg?branch=master
 How to start the DiviCal application
 ---
 
