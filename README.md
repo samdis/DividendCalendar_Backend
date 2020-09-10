@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/samdis/DividenCalendar_Backend.svg?branch=master)](https://travis-ci.org/samdis/DividenCalendar_Backend)
-# Dividend Calendar
+# Dividend Calendar Back End
 
 How to start the DiviCal application
 ---
